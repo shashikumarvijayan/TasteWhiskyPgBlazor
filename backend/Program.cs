@@ -6,10 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TasteWhiskyContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -22,8 +18,7 @@ using (var scope = app.Services.CreateScope())
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    // Development-specific configuration can go here
 }
 
 app.MapGet("/api/distilleries", async (TasteWhiskyContext db) =>

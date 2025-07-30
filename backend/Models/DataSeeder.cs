@@ -1,3 +1,6 @@
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+
 namespace TasteWhiskyApi.Models;
 
 public static class DataSeeder
