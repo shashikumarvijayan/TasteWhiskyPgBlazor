@@ -1,0 +1,47 @@
+@page "/"
+
+@inject HttpClient Http
+
+<h1>Tasting Notes</h1>
+
+@if (notes == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Dram</th>
+                <th>User</th>
+                <th>Score</th>
+                <th>Overall</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var note in notes)
+            {
+                <tr>
+                    <td>@note.Dram.Name</td>
+                    <td>@note.User.UserName</td>
+                    <td>@note.Score</td>
+                    <td>@note.Overall</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<TastingNoteDto>? notes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        notes = await Http.GetFromJsonAsync<List<TastingNoteDto>>("api/tastingnotes");
+    }
+
+    record DramDto(int Id, string Name);
+    record UserDto(int Id, string UserName);
+    record TastingNoteDto(int Id, DramDto Dram, UserDto User, int Score, string Overall);
+}

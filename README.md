@@ -96,7 +96,20 @@ Make sure the PostgreSQL service is up before running the app.
    ./scripts/install_and_mount_pg.sh
    ```
 
-4. Run the backend and frontend (instructions will be specific per implementation)
+4. Run the backend and frontend:
+
+   ```bash
+   # in one terminal
+   dotnet run --project backend
+
+   # in another terminal
+   dotnet run --project frontend
+   ```
+
+   The backend listens on port `5000` by default and provides the API used by the Blazor app.
+
+   On first launch the backend seeds a small amount of sample data so the UI has something to display.
+
 
 ---
 
