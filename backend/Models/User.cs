@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace TasteWhiskyApi.Models;
 
 public class User
